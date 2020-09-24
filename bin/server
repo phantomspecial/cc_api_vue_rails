@@ -1,0 +1,3 @@
+#!/bin/ash -i
+rm -f /app/tmp/pids/server.pid
+bundle exec foreman start -f Procfile.dev
