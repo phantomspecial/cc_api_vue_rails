@@ -1,39 +1,42 @@
 <template>
   <div id="rates">
-    <h2>Rate and Values</h2>
+    <div class="page_info">
+      <h2>Rate and Values</h2>
+      <p>Last Update: {{ values.time | full_size_datetime }}</p>
+    </div>
     <v-simple-table id="rates_values_table" dense>
       <thead>
-        <tr>
-          <th>Currency</th>
-          <th>Rate</th>
-          <th>Stock</th>
-          <th>Value</th>
-        </tr>
+      <tr>
+        <th>Currency</th>
+        <th>Rate</th>
+        <th>Stock</th>
+        <th>Value</th>
+      </tr>
       </thead>
       <tbody>
-        <tr v-for="(rate, pair) in values.rates" v-bind:id="rate">
-          <td>{{ pair | pair_name }}</td>
-          <td>{{ rate }}</td>
-          <td>{{ get_stock(pair) }}</td>
-          <td>{{ current_value(rate, pair) | addComma }}</td>
-        </tr>
+      <tr v-for="(rate, pair) in values.rates" v-bind:id="rate">
+        <td>{{ pair | pair_name }}</td>
+        <td>{{ rate }}</td>
+        <td>{{ get_stock(pair) }}</td>
+        <td>{{ current_value(rate, pair) | addComma }}</td>
+      </tr>
       </tbody>
     </v-simple-table>
 
     <v-simple-table id="net_assets" dense>
       <tbody>
-        <tr>
-          <th>VC Total</th>
-          <td>{{ vc_total_yen | addComma }}</td>
-        </tr>
-        <tr>
-          <th>JPY</th>
-          <td>{{ jpy_stock | addComma }}</td>
-        </tr>
-        <tr>
-          <th>Net Assets</th>
-          <td>{{ get_net_assets() | addComma }}</td>
-        </tr>
+      <tr>
+        <th>VC Total</th>
+        <td>{{ vc_total_yen | addComma }}</td>
+      </tr>
+      <tr>
+        <th>JPY</th>
+        <td>{{ jpy_stock | addComma }}</td>
+      </tr>
+      <tr>
+        <th>Net Assets</th>
+        <td>{{ get_net_assets() | addComma }}</td>
+      </tr>
       </tbody>
     </v-simple-table>
   </div>
@@ -85,10 +88,12 @@ export default {
 
 <style scoped lang="scss">
   #rates {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  #net_assets {
-    padding-top: 50px;
+    .page_info {
+      display: flex;
+      justify-content: space-between;
+    }
+    #net_assets {
+      padding-top: 50px;
+    }
   }
 </style>
